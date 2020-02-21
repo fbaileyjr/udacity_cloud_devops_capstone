@@ -1,7 +1,7 @@
 pipeline {
     environment {
     registry = "spiralmemory/udacity-devops-capstone"
-    registryCredential = 'spiralmemory'
+    registryCredential = 'docker-hub'
     }
     
     agent any
@@ -30,7 +30,7 @@ pipeline {
         stage('Deploying the Image to Docker') {
             steps {
                 script {
-                    withDockerRegistry([ credentialsId: "spiralmemory", url: "" ]) {
+                    withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
                     sh 'docker push spiralmemory/udacity-devops-capstone'
                     }
                 }
