@@ -50,7 +50,7 @@ I've decided to follow the project suggestion of deploying an 'index.html' file 
 ### Zip with the following files:
 
 #### Screenshots
-- Failed Linting of HTML
+- [X] Failed Linting of HTML 
 - Successful Linting of HTML
 - Jenkins pipeline showing deployment 
 - Screenshot of my AWS EC2 page showing the newly created (for blue/green)
@@ -68,6 +68,8 @@ Trigger a rolling update on kubernetes cluste
 ## notes to delete
 username for jenkins: frankbaileyjr
 
+## install the following packages on the EC2 controller
+- sudo apt install tidy
 
 ## Jenkins Plugins Installed
 - BlueOcean
