@@ -15,7 +15,7 @@ pipeline {
 
         stage ('Cloning from udacity_cloud_devops_capstone') {
             steps {
-                git 'https://github.com/spiralmemory/udacity_cloud_devops_capstone.git'
+                git 'https://github.com/fbaileyjr/udacity_cloud_devops_capstone.git'
             }
         }
 
