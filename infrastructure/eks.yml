@@ -10,22 +10,22 @@ Parameters:
 
   VpcBlock:
     Type: String
-    Default: 192.168.0.0/16
+    Default: 10.0.0.0/16
     Description: The CIDR range for the VPC. This should be a valid private (RFC 1918) CIDR range.
 
   Subnet01Block:
     Type: String
-    Default: 192.168.64.0/18
+    Default: 10.0.0.0/24
     Description: CidrBlock for subnet 01 within the VPC
 
   Subnet02Block:
     Type: String
-    Default: 192.168.128.0/18
+    Default: 10.0.1.0/24
     Description: CidrBlock for subnet 02 within the VPC
 
   Subnet03Block:
     Type: String
-    Default: 192.168.192.0/18
+    Default: 10.0.2.0/24
     Description: CidrBlock for subnet 03 within the VPC. This is used only if the region has more than 2 AZs.
   
   ClusterName:
@@ -62,26 +62,6 @@ Metadata:
           - Subnet02Block
           - Subnet03Block
 
-Conditions:
-  Has2AZs:
-    Fn::Or:
-      - Fn::Equals:
-        - {Ref: 'AWS::Region'}
-        - us-east-1
-      - Fn::Equals:
-        - {Ref: 'AWS::Region'}
-        - us-east-2
-      - Fn::Equals:
-        - {Ref: 'AWS::Region'}
-        - us-west-1
-      - Fn::Equals:
-        - {Ref: 'AWS::Region'}
-        - us-west-2
-
-
-  HasMoreThan2Azs:
-    Fn::Not:
-      - Condition: Has2AZs
 
 # ------------------ Network Configuration --------------------
 
@@ -130,7 +110,7 @@ Resources:
   Subnet01:
     Type: AWS::EC2::Subnet
     Metadata:
-      Comment: Subnet 01
+      Comment: Subnet01
     Properties:
       AvailabilityZone:
         Fn::Select:
@@ -148,7 +128,7 @@ Resources:
   Subnet02:
     Type: AWS::EC2::Subnet
     Metadata:
-      Comment: Subnet 02
+      Comment: Subnet02
     Properties:
       AvailabilityZone:
         Fn::Select:
@@ -164,10 +144,9 @@ Resources:
         Value: !Sub "${EnvironmentName}-Subnet02"
 
   Subnet03:
-    Condition: HasMoreThan2Azs
-    Type: AWS::EC2::Subnet
+    Type: "AWS::EC2::Subnet"
     Metadata:
-      Comment: Subnet 03
+      Comment: Subnet03
     Properties:
       AvailabilityZone:
         Fn::Select:
@@ -195,7 +174,6 @@ Resources:
       RouteTableId: !Ref RouteTable
 
   Subnet03RouteTableAssociation:
-    Condition: HasMoreThan2Azs
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref Subnet03
@@ -374,7 +352,7 @@ Resources:
     Properties:
       AssociatePublicIpAddress: true
       IamInstanceProfile: !Ref NodeInstanceProfile
-      ImageId: ami-0d1cd67c26f5fca19
+      ImageId: ami-0fc20dd1da406780b
       InstanceType: t3.medium
       KeyName: !Ref KeyName
       SecurityGroups:
@@ -416,11 +394,8 @@ Outputs:
 
   SubnetIds:
     Description: All subnets in the VPC
-    Value:
-      Fn::If:
-      - HasMoreThan2Azs
-      - !Join [ ",", [ !Ref Subnet01, !Ref Subnet02, !Ref Subnet03 ] ]
-      - !Join [ ",", [ !Ref Subnet01, !Ref Subnet02 ] ]
+    Value: Join [ ",", [ !Ref Subnet01, !Ref Subnet02, !Ref Subnet03 ] ]
+
 
   SecurityGroups:
     Description: Security group for the cluster control plane communication with worker nodes

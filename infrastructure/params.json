@@ -5,19 +5,19 @@
   },
   {
     "ParameterKey": "VpcBlock",
-    "ParameterValue": "192.168.0.0/16"
+    "ParameterValue": "10.0.0.0/16"
   },
   {
     "ParameterKey": "Subnet01Block",
-    "ParameterValue": "192.168.64.0/18"
+    "ParameterValue": "10.0.0.0/24"
   },
   {
     "ParameterKey": "Subnet02Block",
-    "ParameterValue": "192.168.128.0/18"
+    "ParameterValue": "10.0.1.0/24"
   },
   {
     "ParameterKey": "Subnet03Block",
-    "ParameterValue": "192.168.192.0/18"
+    "ParameterValue": "10.0.2.0/24"
   },
   {
     "ParameterKey": "ClusterName",
@@ -25,7 +25,7 @@
   },
   {
     "ParameterKey": "NodeGroupName",
-    "ParameterValue": "ndgp1"
+    "ParameterValue": "nodegroup1"
   },
   {
     "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
@@ -33,6 +33,6 @@
   },
   {
     "ParameterKey": "KeyName",
-    "ParameterValue": "udacity-nano"
+    "ParameterValue": "frank-udacity-ec2"
   }
 ]

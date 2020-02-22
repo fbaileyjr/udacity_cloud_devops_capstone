@@ -84,6 +84,14 @@ username for jenkins: frankbaileyjr
 - docker --version = 18.09.7 
 - sudo snap install kubectl --classic
 
+# errors ran into 
+- sudo chmod 666 /var/run/docker.sock 
+- Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Permission Denied error
+
+
+
+# after creating cluster, updated to 1.14 in order manage the node
+
 
 
 
