@@ -54,7 +54,7 @@ pipeline {
             steps {
                script {
                 withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl delete zone_configurations/blue-deployment'
+                   sh 'kubectl delete deploy/blue-deployment'
                }
                }
             }
@@ -64,7 +64,7 @@ pipeline {
             steps {
                script {
                    withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl apply -f zone_configurations/blue-zone.yml'
+                   sh 'kubectl apply -f deploy/blue-zone.yml'
                    }
                }
             }
@@ -74,7 +74,7 @@ pipeline {
             steps {
                script {
                    withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl delete zone_configurations/green-deployment'
+                   sh 'kubectl delete deploy/green-deployment'
                    }
                }
             }
