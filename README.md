@@ -93,6 +93,7 @@ username for jenkins: frankbaileyjr
 
 
 # after creating cluster, updated to 1.14 in order manage the node
+# found installed awscli was version 1.14, which did NOT have the eks command
 
 
 
