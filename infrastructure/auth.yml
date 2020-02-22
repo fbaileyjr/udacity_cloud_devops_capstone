@@ -5,13 +5,13 @@ metadata:
   namespace: kube-system 
 data: 
   mapRoles: | 
-    - rolearn: arn:aws:iam::731016540330:role/ekscapstone-NodeInstanceRole-NU3OE1JF5X19 
+    - rolearn: arn:aws:iam::814520223121:role/my-eks-cluster-EKSRole-173ZN95PPGY91 
       username: system:node:{{EC2PrivateDNSName}} 
       groups: 
         - system:bootstrappers 
         - system:nodes 
   mapUsers: | 
-    - userarn: arn:aws:iam::731016540330:user/prho-beta 
+    - userarn: arn:aws:iam::814520223121:user/frank.bailey
       username: designated_user 
       groups: 
         - system:masters
