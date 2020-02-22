@@ -43,7 +43,7 @@ pipeline {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
                    // Latest
                    sh "aws eks --region us-east-2 update-kubeconfig --name udacitycluster"
-                   sh 'kubectl apply -f deploy/green.yml'
+                   sh 'kubectl apply -f zone_configurations/green-zone.yml'
                   }
                }
             }
@@ -53,7 +53,7 @@ pipeline {
             steps {
                script {
                 withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl delete deploy/blue-deployment'
+                   sh 'kubectl delete zone_configurations/blue-deployment'
                }
                }
             }
@@ -63,7 +63,7 @@ pipeline {
             steps {
                script {
                    withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl apply -f deploy/blue.yml'
+                   sh 'kubectl apply -f zone_configurations/blue-zone.yml'
                    }
                }
             }
@@ -73,7 +73,7 @@ pipeline {
             steps {
                script {
                    withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl delete deploy/green-deployment'
+                   sh 'kubectl delete zone_configurations/green-deployment'
                    }
                }
             }
