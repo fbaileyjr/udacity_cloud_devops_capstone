@@ -64,7 +64,7 @@ pipeline {
             steps {
                script {
                    withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
-                   sh 'kubectl apply -f deploy/blue-zone.yml'
+                   sh 'kubectl apply -f zone_configurations/blue-zone.yml'
                    }
                }
             }
