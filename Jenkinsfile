@@ -42,6 +42,7 @@ pipeline {
                script {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-2'){
                    sh "aws --version"
+                   sh "which aws"
                    sh "aws eks update-kubeconfig --region us-east-2 --name udacitycluster"
                    sh 'kubectl apply -f zone_configurations/green-zone.yml'
                   }
